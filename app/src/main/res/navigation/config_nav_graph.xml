@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/config_nav_graph"
+    app:startDestination="@id/configLanguageFragment">
+
+    <fragment
+        android:id="@+id/configLanguageFragment"
+        android:name="com.app.aktham.newsapplication.ui.ConfigLanguageFragment"
+        android:label="fragment_config_language"
+        tools:layout="@layout/fragment_config_language" >
+        <action
+            android:id="@+id/action_configLanguageFragment_to_configAppStyleFragment"
+            app:destination="@id/configAppStyleFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/configCountryFragment"
+        android:name="com.app.aktham.newsapplication.ui.ConfigCountryFragment"
+        android:label="fragment_config_country"
+        tools:layout="@layout/fragment_config_country" />
+    <fragment
+        android:id="@+id/configAppStyleFragment"
+        android:name="com.app.aktham.newsapplication.ui.ConfigAppStyleFragment"
+        android:label="fragment_config_style"
+        tools:layout="@layout/fragment_config_style" >
+        <action
+            android:id="@+id/action_configAppStyleFragment_to_configCountryFragment"
+            app:destination="@id/configCountryFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+</navigation>

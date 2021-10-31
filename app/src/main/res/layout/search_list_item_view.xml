@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/search_card"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:cardElevation="@dimen/card_elevation"
+    app:cardCornerRadius="10dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:layout_margin="5dp">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/search_image"
+            android:layout_width="120dp"
+            android:layout_height="100dp"
+            android:scaleType="centerCrop"
+            tools:src="@tools:sample/avatars"/>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/search_title"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:textSize="18sp"
+                android:maxLines="2"
+                android:gravity="start"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                tools:text="News Search Title"/>
+
+            <TextView
+                android:id="@+id/search_publish_by"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="By Cnbc News"
+                android:padding="4dp"
+                android:textSize="12sp"
+                android:gravity="end"/>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</com.google.android.material.card.MaterialCardView>
