@@ -7,7 +7,7 @@ object Constants {
     const val PREFERENCE_STYLE_KEY = "applicationStyle"
 
     const val BASE_URL = "https://newsapi.org/"
-    const val API_KEY = "7b30511ca5044213b235c243209e2b6f"
+    const val API_KEY = "" // Your Newsapi Key Here
 
     const val EN_LANGUAGE = "en"
     const val AR_LANGUAGE = "ar"
