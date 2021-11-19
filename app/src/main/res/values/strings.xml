@@ -21,4 +21,10 @@
     <string name="settings_title_more_apps">More Application</string>
     <string name="settings_title_contact_us">Contact Us</string>
     <string name="settings_title_version">Version</string>
+    <string name="style_follow_system">Follow System</string>
+    <string name="lang_en">English</string>
+    <string name="lang_ar">Arabic</string>
+    <string name="back">Back</string>
+    <string name="finish">Finish</string>
+    <string name="style_auto">Auto</string>
 </resources>

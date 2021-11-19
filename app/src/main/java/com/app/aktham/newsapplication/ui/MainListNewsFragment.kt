@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.Toast
-import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,7 +14,7 @@ import com.app.aktham.newsapplication.models.NewsListModel
 import com.app.aktham.newsapplication.ui.viewModels.NewsViewModel
 import com.app.aktham.newsapplication.utils.Constants
 import com.app.aktham.newsapplication.utils.NewsRecourses
-import com.google.android.material.tabs.TabLayout
+import com.google.android.material.chip.Chip
 
 class MainListNewsFragment : Fragment(R.layout.fragment_main_list_news),
     NewsListAdapter.NewsListListener {
@@ -37,27 +36,36 @@ class MainListNewsFragment : Fragment(R.layout.fragment_main_list_news),
 
         // Observe News Data
         newsViewModel.newsLiveData.observe(viewLifecycleOwner, {
+            binding.newsProgress.visibility = View.GONE
+            binding.errorLayout.visibility = View.GONE
+            binding.mainNewsRecyclerView.visibility = View.GONE
             when (it) {
                 is NewsRecourses.Loading -> {
-                    binding.loadingLayout.isVisible = true
-                    binding.mainNewsRecyclerView.visibility = View.GONE
-                    errorView(false)
+                    // Show Progress View
+                    binding.newsProgress.visibility = View.VISIBLE
                 }
 
                 is NewsRecourses.Success<*> -> {
+                    // Show News RecyclerList View
                     binding.mainNewsRecyclerView.visibility = View.VISIBLE
-                    binding.loadingLayout.isVisible = false
+                    // Set News Data To List Adapter
                     newsListAdapter.submitList((it.dataList as List<NewsListModel>))
-                    errorView(false)
+                }
+
+                is NewsRecourses.Empty -> {
+                    // Show Error Message
+                    errorView("No Data Found !") { }
                 }
 
                 is NewsRecourses.Errors -> {
-                    binding.loadingLayout.isVisible = false
-                    // Show Error Message
-                    errorView(true, it.message) {
+                    // Show Error View
+                    errorView(it.message) {
                         // Reload
-                        newsViewModel.getNewsData(NewsViewModel.GetNewsDataEvents.TopHeadlinesNews())
+                        newsViewModel.getNewsData(
+                            NewsViewModel.GetNewsDataEvents.TopHeadlinesNews()
+                        )
                     }
+
                 }
             }
         })
@@ -72,45 +80,77 @@ class MainListNewsFragment : Fragment(R.layout.fragment_main_list_news),
         binding.mainNewsRecyclerView.adapter = newsListAdapter
     }
 
-    // News Category's
+//    // News Category's
+//    private fun initNewsCategory() {
+//        Constants.NewsCategories.forEach {
+//            val tab = binding.categoryTabLayout.newTab().apply {
+//                text = it
+//            }
+//            // Add Chip To Chips Group
+//            binding.categoryTabLayout.addTab(tab)
+//        }
+//
+//        // TabLayout OnSelect Tab Action Listener
+//        binding.categoryTabLayout.addOnTabSelectedListener(object :
+//            TabLayout.OnTabSelectedListener {
+//            override fun onTabSelected(tab: TabLayout.Tab?) {
+//                newsViewModel.getNewsData(
+//                    NewsViewModel.GetNewsDataEvents.NewsByCategory(
+//                        tab?.text.toString().lowercase()
+//                    )
+//                )
+//            }
+//
+//            override fun onTabReselected(tab: TabLayout.Tab?) {}
+//            override fun onTabUnselected(tab: TabLayout.Tab?) {}
+//        })
+//    }
+
     private fun initNewsCategory() {
-        Constants.NewsCategories.forEach {
-            val tab = binding.categoryTabLayout.newTab().apply {
-                text = it
+        Constants.NewsCategories.forEach { newsCategory ->
+            val chip = Chip(requireContext()).apply {
+                text = newsCategory.uppercase()
+                isCheckable = true
+                if (newsCategory.lowercase() == newsViewModel.newsSelectedCategory.lowercase()) {
+                    isSelected = true
+                }
             }
-            // Add Chip To Chips Group
-            binding.categoryTabLayout.addTab(tab)
+            binding.categoryChipsGroup.addView(chip)
         }
 
-        // TabLayout OnSelect Tab Action Listener
-        binding.categoryTabLayout.addOnTabSelectedListener(object :
-            TabLayout.OnTabSelectedListener {
-            override fun onTabSelected(tab: TabLayout.Tab?) {
+        // News Categories Chips OnSelected Action
+        binding.categoryChipsGroup.setOnCheckedChangeListener { _, checkedId ->
+            binding.categoryChipsGroup.findViewById<Chip>(checkedId).apply {
+                isSelected = true
+                newsViewModel.newsSelectedCategory = text.toString()
                 newsViewModel.getNewsData(
                     NewsViewModel.GetNewsDataEvents.NewsByCategory(
-                        tab?.text.toString().lowercase()
+                        text.toString()
                     )
                 )
             }
-
-            override fun onTabReselected(tab: TabLayout.Tab?) {}
-            override fun onTabUnselected(tab: TabLayout.Tab?) {}
-        })
+            Toast.makeText(requireContext(), "Click", Toast.LENGTH_SHORT).show()
+        }
     }
 
     // Errors View Layout
-    private fun errorView(state: Boolean, errorMsg: String = "", onReload: () -> Unit = {}){
-        binding.errorLayout.visibility = if (state) View.VISIBLE else View.GONE
+    private fun errorView(errorMsg: String = "", onReload: () -> Unit = {}) {
+        // Show Error View
+        binding.errorLayout.visibility = View.VISIBLE
+        // Set Error Message To Error Text View
         binding.errorMsgTv.text = errorMsg
+        // Reload Button On Click
         binding.reloadBut.setOnClickListener {
+            // Hide Error View
             binding.errorLayout.visibility = View.GONE
-            // reload
+            // Reload News Feed
             onReload()
         }
     }
 
     // List Item OnClick
     override fun onClick(position: Int, newsData: NewsListModel) {
+        // Go To News Details Fragment
         val action = MainListNewsFragmentDirections
             .actionMainListNewsFragmentToNewsDetailsFragment(itemPosition = position)
         findNavController().navigate(action)

@@ -2,13 +2,11 @@ package com.app.aktham.newsapplication.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.size.Scale
-import coil.size.Size
 import com.app.aktham.newsapplication.R
 import com.app.aktham.newsapplication.databinding.NewsListItemViewBinding
 import com.app.aktham.newsapplication.models.NewsListModel
@@ -64,8 +62,9 @@ class NewsListAdapter(
             // Load Image Using Coil Library
             binding.newsImage.load(newsData.newsImageUrl) {
                 crossfade(750)
-                //placeholder(R.drawable.ic_baseline_image_search_24)
-                error(R.drawable.ic_baseline_image_search_24)
+                scale(Scale.FILL)
+                placeholder(R.drawable.ic_baseline_image_search_24)
+                error(R.drawable.ic_baseline_error_outline_24)
             }
         }
     }

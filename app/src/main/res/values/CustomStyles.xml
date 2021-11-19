@@ -54,7 +54,7 @@
     </style>
 
     <style name="MainTextTitleTextAppearance" parent="TextAppearance.AppCompat">
-        <item name="fontFamily">@font/roboto_mono</item>
-        <item name="android:textSize">25sp</item>
+        <item name="fontFamily">@font/roboto</item>
+        <item name="android:textSize">23sp</item>
     </style>
 </resources>

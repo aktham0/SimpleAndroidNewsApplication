@@ -71,7 +71,7 @@
                 android:layout_gravity="center"
                 android:padding="4dp"
                 android:gravity="center"
-                android:text="Auto"
+                android:text="@string/style_auto"
                 android:textSize="16sp" />
         </androidx.appcompat.widget.LinearLayoutCompat>
     </com.google.android.material.card.MaterialCardView>
@@ -113,7 +113,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginBottom="30dp"
-        android:text="Back"
+        android:text="@string/back"
         app:icon="@drawable/ic_arrow_back"
         app:layout_constraintEnd_toStartOf="@id/config_next_but"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -131,7 +131,7 @@
         app:layout_constraintStart_toEndOf="@id/config_back_but"
         app:layout_constraintEnd_toEndOf="parent"
         app:icon="@drawable/ic_arrow_forward"
-        android:text="Next"/>
+        android:text="@string/finish"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/start_guideline"

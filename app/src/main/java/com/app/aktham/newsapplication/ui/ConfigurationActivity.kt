@@ -31,22 +31,6 @@ class ConfigurationActivity : AppCompatActivity() {
 
     }
 
-    override fun onStart() {
-        super.onStart()
-        val configNavController = findNavController(R.id.config_nav_host)
-        configNavController.addOnDestinationChangedListener { _, destination, _ ->
-            when(destination.id) {
-                R.id.configLanguageFragment -> {
-
-                }
-
-                R.id.configCountryFragment -> {
-
-                }
-            }
-        }
-    }
-
     override fun onBackPressed() {
         val navController = findNavController(R.id.config_nav_host)
         if (!navController.popBackStack()){

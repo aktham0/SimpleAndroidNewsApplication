@@ -62,11 +62,11 @@ class ConfigLanguageFragment : Fragment(R.layout.fragment_config_language) {
         if (selectedLang == Constants.EN_LANGUAGE){
             binding.arCard.strokeWidth = 0
             binding.enCard.strokeWidth = CARD_STROKE_WIDTH
-            binding.enCard.strokeColor = ContextCompat.getColor(requireContext(),R.color.purple_500)
+            binding.enCard.strokeColor = ContextCompat.getColor(requireContext(),R.color.red_500)
         } else if (selectedLang == Constants.AR_LANGUAGE) {
             binding.enCard.strokeWidth = 0
             binding.arCard.strokeWidth = CARD_STROKE_WIDTH
-            binding.arCard.strokeColor = ContextCompat.getColor(requireContext(),R.color.purple_500)
+            binding.arCard.strokeColor = ContextCompat.getColor(requireContext(),R.color.red_500)
         } else {
             Toast.makeText(requireContext(), "Not Lang Save", Toast.LENGTH_SHORT).show()
         }

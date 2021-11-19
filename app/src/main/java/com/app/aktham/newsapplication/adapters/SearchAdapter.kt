@@ -63,6 +63,7 @@ class SearchAdapter(
             ) {
                 crossfade(750)
                 placeholder(R.drawable.ic_baseline_image_search_24)
+                error(R.drawable.ic_baseline_error_outline_24)
             }
         }
     }

@@ -8,6 +8,7 @@ import com.app.aktham.newsapplication.models.NewsDetailsModel
 import com.app.aktham.newsapplication.repositories.ConfigRepository
 import com.app.aktham.newsapplication.repositories.NewsRepository
 import com.app.aktham.newsapplication.retrofit.models.NewsMainResponse
+import com.app.aktham.newsapplication.utils.Constants
 import com.app.aktham.newsapplication.utils.Constants.PAGE_SIZE_MAX
 import com.app.aktham.newsapplication.utils.DataMapping_Imp
 import com.app.aktham.newsapplication.utils.NewsRecourses
@@ -33,6 +34,8 @@ class NewsViewModel @Inject constructor(
     val newsSearchLiveData: LiveData<NewsRecourses> = _newsSearchLiveData
 
     val detailsNewsList = mutableListOf<NewsDetailsModel>()
+
+    var newsSelectedCategory = Constants.NewsCategories[0]
 
     init {
         getNewsData(GetNewsDataEvents.TopHeadlinesNews())

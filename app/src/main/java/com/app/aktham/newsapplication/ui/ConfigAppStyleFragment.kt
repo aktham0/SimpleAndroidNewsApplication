@@ -1,5 +1,6 @@
 package com.app.aktham.newsapplication.ui
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
@@ -59,11 +60,11 @@ class ConfigAppStyleFragment : Fragment(R.layout.fragment_config_style) {
 
         // Next Button OnClick Action
         binding.configNextBut.setOnClickListener {
-            // Go To Select Country Fragment
-            findNavController()
-                .navigate(R.id.action_configAppStyleFragment_to_configCountryFragment)
+            // Go To Main Activity
+            startActivity(Intent(requireActivity(), MainActivity::class.java))
+            // Close Configuration Activity
+            requireActivity().finish()
         }
-
     }
 
     private fun selectedCard() {
@@ -73,14 +74,14 @@ class ConfigAppStyleFragment : Fragment(R.layout.fragment_config_style) {
                 binding.lightCard.strokeWidth = 0
                 binding.darkCard.strokeWidth = CARD_STROKE_WIDTH
                 binding.darkCard.strokeColor =
-                    ContextCompat.getColor(requireContext(), R.color.purple_500)
+                    ContextCompat.getColor(requireContext(), R.color.red_500)
             }
             AppCompatDelegate.MODE_NIGHT_NO -> { // Light Mode
                 binding.autoCard.strokeWidth = 0
                 binding.darkCard.strokeWidth = 0
                 binding.lightCard.strokeWidth = CARD_STROKE_WIDTH
                 binding.lightCard.strokeColor =
-                    ContextCompat.getColor(requireContext(), R.color.purple_500)
+                    ContextCompat.getColor(requireContext(), R.color.red_500)
             }
 
             else -> {
@@ -88,7 +89,7 @@ class ConfigAppStyleFragment : Fragment(R.layout.fragment_config_style) {
                 binding.lightCard.strokeWidth = 0
                 binding.autoCard.strokeWidth = CARD_STROKE_WIDTH
                 binding.autoCard.strokeColor =
-                    ContextCompat.getColor(requireContext(), R.color.purple_500)
+                    ContextCompat.getColor(requireContext(), R.color.red_500)
             }
         }
     }

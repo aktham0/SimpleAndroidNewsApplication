@@ -31,6 +31,9 @@
         <action
             android:id="@+id/action_searchNewsFragment_to_mainListNewsFragment"
             app:destination="@id/mainListNewsFragment" />
+        <action
+            android:id="@+id/action_searchNewsFragment_to_newsDetailsFragment"
+            app:destination="@id/newsDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"

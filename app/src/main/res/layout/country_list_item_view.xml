@@ -30,7 +30,7 @@
         android:layout_gravity="center"
         android:padding="10dp"
         android:visibility="invisible"
-        app:tint="@color/teal_700"
+        app:tint="@color/blue_700"
         app:srcCompat="@drawable/ic_down"/>
 
 </androidx.appcompat.widget.LinearLayoutCompat>

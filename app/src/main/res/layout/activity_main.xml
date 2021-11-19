@@ -46,5 +46,8 @@
         android:id="@+id/bottom_nav_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:itemIconSize="28dp"
+        app:labelVisibilityMode="auto"
         app:menu="@menu/bottom_menu"/>
+
 </androidx.appcompat.widget.LinearLayoutCompat>
