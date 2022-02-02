@@ -7,25 +7,32 @@
         <entry key="..\:/Users/aktha/Documents/AndroidProjects/AndroidStudioProjects/NewsApplication/app/src/main/res/drawable/main_activity_gradient_background.xml" value="0.18076923076923077" />
         <entry key="..\:/Users/aktha/Documents/AndroidProjects/AndroidStudioProjects/NewsApplication/app/src/main/res/drawable/main_layout_shape.xml" value="0.18076923076923077" />
         <entry key="..\:/Users/aktha/Documents/AndroidProjects/AndroidStudioProjects/NewsApplication/app/src/main/res/drawable/news_card_image_shape.xml" value="0.19583333333333333" />
+        <entry key="..\:/Users/aktha/Documents/AndroidProjects/AndroidStudioProjects/NewsApplication/app/src/main/res/drawable/no_data_image.xml" value="0.18" />
         <entry key="..\:/Users/aktha/Documents/AndroidProjects/AndroidStudioProjects/NewsApplication/app/src/main/res/drawable/splash_screen_background.xml" value="0.18076923076923077" />
+        <entry key="..\:/Users/aktha/Documents/AndroidProjects/AndroidStudioProjects/NewsApplication/app/src/main/res/drawable/undraw_search.xml" value="0.2115" />
         <entry key="..\:/Users/aktha/Documents/AndroidProjects/AndroidStudioProjects/NewsApplication/app/src/main/res/layout/activity_configuration.xml" value="0.2" />
-        <entry key="..\:/Users/aktha/Documents/AndroidProjects/AndroidStudioProjects/NewsApplication/app/src/main/res/layout/activity_main.xml" value="0.18" />
+        <entry key="..\:/Users/aktha/Documents/AndroidProjects/AndroidStudioProjects/NewsApplication/app/src/main/res/layout/activity_main.xml" value="0.1675213675213675" />
         <entry key="..\:/Users/aktha/Documents/AndroidProjects/AndroidStudioProjects/NewsApplication/app/src/main/res/layout/config_language.xml" value="0.2" />
         <entry key="..\:/Users/aktha/Documents/AndroidProjects/AndroidStudioProjects/NewsApplication/app/src/main/res/layout/country_list_item_view.xml" value="0.1814814814814815" />
+        <entry key="..\:/Users/aktha/Documents/AndroidProjects/AndroidStudioProjects/NewsApplication/app/src/main/res/layout/fragment_archive_news.xml" value="0.22" />
         <entry key="..\:/Users/aktha/Documents/AndroidProjects/AndroidStudioProjects/NewsApplication/app/src/main/res/layout/fragment_config_country.xml" value="0.1814814814814815" />
         <entry key="..\:/Users/aktha/Documents/AndroidProjects/AndroidStudioProjects/NewsApplication/app/src/main/res/layout/fragment_config_language.xml" value="0.33" />
         <entry key="..\:/Users/aktha/Documents/AndroidProjects/AndroidStudioProjects/NewsApplication/app/src/main/res/layout/fragment_config_language_page.xml" value="0.1814814814814815" />
-        <entry key="..\:/Users/aktha/Documents/AndroidProjects/AndroidStudioProjects/NewsApplication/app/src/main/res/layout/fragment_config_style.xml" value="0.19" />
-        <entry key="..\:/Users/aktha/Documents/AndroidProjects/AndroidStudioProjects/NewsApplication/app/src/main/res/layout/fragment_main_list_news.xml" value="0.1675213675213675" />
-        <entry key="..\:/Users/aktha/Documents/AndroidProjects/AndroidStudioProjects/NewsApplication/app/src/main/res/layout/fragment_news_details.xml" value="0.33" />
+        <entry key="..\:/Users/aktha/Documents/AndroidProjects/AndroidStudioProjects/NewsApplication/app/src/main/res/layout/fragment_config_style.xml" value="0.25" />
+        <entry key="..\:/Users/aktha/Documents/AndroidProjects/AndroidStudioProjects/NewsApplication/app/src/main/res/layout/fragment_main_list_news.xml" value="0.16" />
+        <entry key="..\:/Users/aktha/Documents/AndroidProjects/AndroidStudioProjects/NewsApplication/app/src/main/res/layout/fragment_news_details.xml" value="0.1675213675213675" />
         <entry key="..\:/Users/aktha/Documents/AndroidProjects/AndroidStudioProjects/NewsApplication/app/src/main/res/layout/fragment_search_news.xml" value="0.1814814814814815" />
-        <entry key="..\:/Users/aktha/Documents/AndroidProjects/AndroidStudioProjects/NewsApplication/app/src/main/res/layout/fragment_settings.xml" value="0.25" />
+        <entry key="..\:/Users/aktha/Documents/AndroidProjects/AndroidStudioProjects/NewsApplication/app/src/main/res/layout/fragment_settings.xml" value="0.33" />
         <entry key="..\:/Users/aktha/Documents/AndroidProjects/AndroidStudioProjects/NewsApplication/app/src/main/res/layout/language_list_item_view.xml" value="0.1814814814814815" />
+        <entry key="..\:/Users/aktha/Documents/AndroidProjects/AndroidStudioProjects/NewsApplication/app/src/main/res/layout/news_archive_list_item_view.xml" value="0.33" />
         <entry key="..\:/Users/aktha/Documents/AndroidProjects/AndroidStudioProjects/NewsApplication/app/src/main/res/layout/news_list_item_view.xml" value="0.33" />
         <entry key="..\:/Users/aktha/Documents/AndroidProjects/AndroidStudioProjects/NewsApplication/app/src/main/res/layout/search_list_item_view.xml" value="0.1675213675213675" />
         <entry key="..\:/Users/aktha/Documents/AndroidProjects/AndroidStudioProjects/NewsApplication/app/src/main/res/layout/settings_item_view.xml" value="0.33" />
+        <entry key="..\:/Users/aktha/Documents/AndroidProjects/AndroidStudioProjects/NewsApplication/app/src/main/res/layout/test.xml" value="0.16540084388185655" />
         <entry key="..\:/Users/aktha/Documents/AndroidProjects/AndroidStudioProjects/NewsApplication/app/src/main/res/menu/bottom_menu.xml" value="0.1814814814814815" />
+        <entry key="..\:/Users/aktha/Documents/AndroidProjects/AndroidStudioProjects/NewsApplication/app/src/main/res/menu/list_item_popup_menu.xml" value="0.1675213675213675" />
         <entry key="..\:/Users/aktha/Documents/AndroidProjects/AndroidStudioProjects/NewsApplication/app/src/main/res/menu/main_menu.xml" value="0.1814814814814815" />
+        <entry key="..\:/Users/aktha/Documents/AndroidProjects/AndroidStudioProjects/NewsApplication/app/src/main/res/menu/menu_test.xml" value="0.1675213675213675" />
       </map>
     </option>
   </component>

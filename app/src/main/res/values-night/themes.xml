@@ -10,9 +10,13 @@
         <item name="colorSecondaryVariant">@color/blue_200</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">@color/status_bar_color</item>
-        <!-- Customize your theme here. -->
-        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:statusBarColor">?attr/colorPrimary</item>
+        <!-- change app font -->
+        <item name="android:fontFamily">@font/open_sans</item>
+        <!-- change app text color -->
         <item name="android:textColor">@color/main_text_color</item>
+        <!-- change navigation bar color -->
+        <item name="android:navigationBarColor">?attr/colorSurface</item>
+
     </style>
 </resources>

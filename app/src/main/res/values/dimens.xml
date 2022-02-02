@@ -1,4 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="card_elevation">10dp</dimen>
+    <dimen name="search_card_elevation">6dp</dimen>
+    <dimen name="action_bar_height">70dp</dimen>
+    <dimen name="action_bar_title_size">22sp</dimen>
+    <dimen name="settings_card_item_height">60dp</dimen>
+    <dimen name="message_fb_tv_size">20sp</dimen>
+    <dimen name="message_fb_tv_padding">10dp</dimen>
+    <dimen name="feed_back_layout_height">150dp</dimen>
+    <dimen name="bottom_nav_elevation">8dp</dimen>
+    <dimen name="search_card_margin">25dp</dimen>
+    <dimen name="search_card_radius">20dp</dimen>
+    <dimen name="news_list_item_title_text_size">18sp</dimen>
+    <dimen name="news_list_item_subtitle_text_size">16sp</dimen>
+    <dimen name="news_card_list_item_radius">10dp</dimen>
 </resources>

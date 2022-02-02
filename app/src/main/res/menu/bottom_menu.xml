@@ -2,22 +2,32 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:id="@+id/mainListNewsFragment"
+    <item
+        android:id="@+id/mainListNewsFragment"
+        android:icon="@drawable/ic_outline_rss_feed"
+        android:enabled="true"
         android:title="@string/menu_news_feeds"
-        app:showAsAction="ifRoom"
-        android:icon="@drawable/ic_baseline_feed"
-        android:enabled="true"/>
+        app:showAsAction="ifRoom" />
 
-    <item android:id="@+id/searchNewsFragment"
-        android:title="@string/menu_search"
+    <item
+        android:id="@+id/archiveNewsFragment"
+        android:icon="@drawable/ic_baseline_archive_24"
+        android:enabled="true"
+        android:title="@string/menu_archive"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/searchNewsFragment"
         android:icon="@drawable/ic_baseline_search_24"
-        app:showAsAction="ifRoom"
-        android:enabled="true"/>
+        android:enabled="true"
+        android:title="@string/menu_search"
+        app:showAsAction="ifRoom" />
 
-    <item android:id="@+id/settingsFragment"
-        android:title="@string/menu_settings"
+    <item
+        android:id="@+id/settingsFragment"
         android:icon="@drawable/ic_baseline_settings"
-        app:showAsAction="ifRoom"
-        android:enabled="true"/>
+        android:enabled="true"
+        android:title="@string/menu_settings"
+        app:showAsAction="ifRoom" />
 
 </menu>

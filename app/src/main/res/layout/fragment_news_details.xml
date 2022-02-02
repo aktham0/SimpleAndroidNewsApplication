@@ -10,10 +10,10 @@
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/image_card"
         android:layout_width="0dp"
+        android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_height="220dp"
         app:cardElevation="@dimen/card_elevation">
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/news_details_image"
@@ -64,7 +64,6 @@
                 tools:text="News Description"
                 android:textSize="16sp" />
 
-
             <TextView
                 android:id="@+id/news_details_body"
                 android:layout_width="match_parent"
@@ -107,7 +106,6 @@
         app:layout_constraintEnd_toEndOf="@id/end_guideline"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_margin="15dp"
-        android:translationX="300dp"
         app:icon="@drawable/ic_baseline_link_24"
         android:text="News Page"
         android:contentDescription="Go To News Page" />

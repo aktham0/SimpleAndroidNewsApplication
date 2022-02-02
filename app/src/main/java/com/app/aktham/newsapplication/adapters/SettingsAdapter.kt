@@ -5,14 +5,28 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.app.aktham.newsapplication.databinding.SettingsItemViewBinding
 import com.app.aktham.newsapplication.models.SettingsModel
+import com.app.aktham.newsapplication.utils.MyListsListener
 
 class SettingsAdapter(
-    private val dataList: List<SettingsModel>,
-    private val settingListener: SettingsListListener
-) : RecyclerView.Adapter<SettingsAdapter.SettingsViewHolder>() {
+    private val settingListener: MyListsListener<SettingsModel>
+) : ListAdapter<SettingsModel, SettingsAdapter.SettingsViewHolder>(diffUtil) {
+
+    companion object {
+        private val diffUtil = object : DiffUtil.ItemCallback<SettingsModel>() {
+            override fun areContentsTheSame(
+                oldItem: SettingsModel,
+                newItem: SettingsModel
+            ) = oldItem.tag == newItem.tag
+
+            override fun areItemsTheSame(oldItem: SettingsModel, newItem: SettingsModel) =
+                oldItem == newItem
+        }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SettingsViewHolder {
         val viewBinding = SettingsItemViewBinding.inflate(
@@ -22,10 +36,8 @@ class SettingsAdapter(
     }
 
     override fun onBindViewHolder(holder: SettingsViewHolder, position: Int) {
-        holder.bind(dataList[position])
+        holder.bind(getItem(position))
     }
-
-    override fun getItemCount() = dataList.size
 
     // Settings List ViewHolder
     inner class SettingsViewHolder(val binding: SettingsItemViewBinding, val context: Context) :
@@ -35,9 +47,9 @@ class SettingsAdapter(
             // Item OnClick
             binding.settingItemCard.setOnClickListener {
                 if (absoluteAdapterPosition != RecyclerView.NO_POSITION) {
-                    settingListener.onClick(
+                    settingListener.onItemClick(
                         absoluteAdapterPosition,
-                        dataList[absoluteAdapterPosition]
+                        getItem(absoluteAdapterPosition)
                     )
                 }
             }
@@ -56,9 +68,4 @@ class SettingsAdapter(
         }
     }
 
-
-    // Settings Item Click Interface
-    interface SettingsListListener {
-        fun onClick(position: Int, itemData: SettingsModel)
-    }
 }

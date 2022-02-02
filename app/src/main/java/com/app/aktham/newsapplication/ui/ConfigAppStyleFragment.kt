@@ -1,16 +1,19 @@
 package com.app.aktham.newsapplication.ui
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
+import androidx.core.content.edit
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.app.aktham.newsapplication.R
 import com.app.aktham.newsapplication.databinding.FragmentConfigStyleBinding
 import com.app.aktham.newsapplication.ui.viewModels.ConfigViewModel
+import com.app.aktham.newsapplication.utils.Constants
 
 private const val CARD_STROKE_WIDTH = 10
 
@@ -58,12 +61,17 @@ class ConfigAppStyleFragment : Fragment(R.layout.fragment_config_style) {
             findNavController().popBackStack()
         }
 
-        // Next Button OnClick Action
-        binding.configNextBut.setOnClickListener {
+        // Finish Button OnClick Action
+        binding.configFinishBut.setOnClickListener {
             // Go To Main Activity
             startActivity(Intent(requireActivity(), MainActivity::class.java))
             // Close Configuration Activity
             requireActivity().finish()
+            // Save App First Start State To Share Preference
+            requireActivity().getSharedPreferences(Constants.SHARED_PREFERENCE_FILE_NAME,
+                Context.MODE_PRIVATE).edit {
+                putBoolean(Constants.PREFERENCE_FIRST_START_KET, true)
+            }
         }
     }
 
@@ -95,7 +103,7 @@ class ConfigAppStyleFragment : Fragment(R.layout.fragment_config_style) {
     }
 
     private fun showNextButton() {
-        binding.configNextBut.animate().apply {
+        binding.configFinishBut.animate().apply {
             translationY(0f)
             duration = 500
         }

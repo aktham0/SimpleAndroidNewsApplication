@@ -1,8 +1,10 @@
 package com.app.aktham.newsapplication.models
 
+import androidx.annotation.DrawableRes
+
 data class SettingsModel(
-    val title :String,
-    var subTitle :String = "",
-    var icon :Int,
-    val tag :String = ""
+    val title: String,
+    val subTitle: String = "",
+    val tag: String,
+    @DrawableRes val icon: Int
 )

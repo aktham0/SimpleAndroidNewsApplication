@@ -10,17 +10,19 @@
         <item name="colorSecondaryVariant">@color/blue_700</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">@color/status_bar_color</item>
+        <item name="android:statusBarColor">?attr/colorPrimary</item>
         <item name="android:windowLightStatusBar">true</item>
-        <!-- Customize your theme here. -->
-        <item name="android:fontFamily">@font/roboto</item>
+        <!-- change app font -->
+        <item name="android:fontFamily">@font/open_sans</item>
+        <!-- change app text color -->
         <item name="android:textColor">@color/main_text_color</item>
+
     </style>
 
     <style name="SplashScreenStyle" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:windowTranslucentStatus">false</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:windowBackground">@drawable/splash_screen_background</item>
-
     </style>
+
 </resources>

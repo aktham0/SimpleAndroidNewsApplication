@@ -1,7 +1,6 @@
 package com.app.aktham.newsapplication.ui.viewModels
 
 import androidx.lifecycle.ViewModel
-import com.app.aktham.newsapplication.models.CountryListModel
 import com.app.aktham.newsapplication.repositories.ConfigRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject

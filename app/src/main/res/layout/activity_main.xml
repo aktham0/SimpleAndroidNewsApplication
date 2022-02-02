@@ -6,48 +6,44 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/main_activity_gradient_background"
     tools:context=".ui.MainActivity">
 
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/toolbar"
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/header_card"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:titleTextAppearance="@style/MainTextTitleTextAppearance"
-        android:background="@android:color/transparent"
-        app:titleTextColor="@color/main_title_color"
-        app:title="News Feeds"
-        app:titleCentered="true" />
+        android:layout_gravity="center"
+        app:cardElevation="0dp"
+        android:elevation="@dimen/card_elevation">
 
-    <com.google.android.material.card.MaterialCardView
+        <TextView
+            android:id="@+id/action_title_tv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/adamina"
+            android:gravity="center"
+            android:textSize="@dimen/action_bar_title_size"
+            tools:text="Main News Page" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/main_nav_host"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        style="@style/MainCardStyle">
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-            <androidx.fragment.app.FragmentContainerView
-                android:id="@+id/main_nav_host"
-                android:name="androidx.navigation.fragment.NavHostFragment"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                app:defaultNavHost="true"
-                app:navGraph="@navigation/main_nav_graph" />
-        </androidx.appcompat.widget.LinearLayoutCompat>
-    </com.google.android.material.card.MaterialCardView>
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/main_nav_graph" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
+        style="@style/Widget.MaterialComponents.BottomNavigationView"
         android:id="@+id/bottom_nav_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:itemIconSize="28dp"
-        app:labelVisibilityMode="auto"
-        app:menu="@menu/bottom_menu"/>
+        app:menu="@menu/bottom_menu"
+        app:elevation="@dimen/bottom_nav_elevation"
+        app:labelVisibilityMode="selected" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

@@ -3,17 +3,12 @@
     <color name="red_200">#EF9A9A</color>
     <color name="red_500">#F44336</color>
     <color name="red_700">#D32F2F</color>
-    <color name="blue_200">#81D4FA</color>
-    <color name="blue_700">#1976D2</color>
+    <color name="blue_200">#A5D6A7</color>
+    <color name="blue_700">#4CAF50</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
     <color name="main_text_color">#121212</color>
-    <color name="status_bar_color">#fefefe</color>
-    <color name="main_title_color">#fefefe</color>
-
-    <color name="background_start_color">#EF5350</color>
-    <color name="background_end_color">#F44336</color>
 
     <color name="config_background_color_start">#d3cce3</color>
     <color name="config_background_color_end">#e9e4f0</color>

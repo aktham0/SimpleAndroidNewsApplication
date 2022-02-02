@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="main_text_color">#fefefe</color>
-    <color name="status_bar_color">#121212</color>
-
-    <color name="main_title_color">#E1DADA</color>
-
-    <color name="background_start_color">#C44442</color>
-    <color name="background_end_color">#CD3A2F</color>
 
     <color name="config_background_color_start">#121212</color>
     <color name="config_background_color_end">#252525</color>

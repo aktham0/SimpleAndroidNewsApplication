@@ -14,6 +14,13 @@
         android:theme="@style/SplashScreenStyle">
         <activity
             android:name=".ui.ConfigurationActivity"
+            android:exported="false">
+        </activity>
+
+        <activity
+            android:name=".ui.MainActivity"
+            android:theme="@style/Theme.NewsApplication"
+            android:windowSoftInputMode="adjustNothing"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,10 +29,6 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".ui.MainActivity"
-            android:theme="@style/Theme.NewsApplication"
-            android:exported="false"/>
     </application>
 
 </manifest>

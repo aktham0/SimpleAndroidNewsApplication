@@ -1,6 +1,7 @@
 package com.app.aktham.newsapplication.ui
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.appcompat.widget.SearchView
@@ -10,39 +11,47 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.app.aktham.newsapplication.R
 import com.app.aktham.newsapplication.adapters.SearchAdapter
 import com.app.aktham.newsapplication.databinding.FragmentSearchNewsBinding
-import com.app.aktham.newsapplication.models.NewsSearchModel
+import com.app.aktham.newsapplication.models.NewsModel
 import com.app.aktham.newsapplication.ui.viewModels.NewsViewModel
+import com.app.aktham.newsapplication.utils.MyListsListener
 import com.app.aktham.newsapplication.utils.NewsRecourses
+
+private const val TAG = "SearchNewsFragment"
 
 class SearchNewsFragment : Fragment(
     R.layout.fragment_search_news
-), SearchAdapter.SearchListListener {
+), MyListsListener<NewsModel> {
 
     private var _binding: FragmentSearchNewsBinding? = null
     private val binding get() = _binding!!
     private val newsViewModel: NewsViewModel by activityViewModels()
 
+    private lateinit var searchListAdapter: SearchAdapter
+    private var oldQuery: String = ""
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // clear search live data to init value
+        newsViewModel.setNewsEvent(NewsViewModel.NewsDataEvents.ClearSearchLiveData)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentSearchNewsBinding.bind(view)
 
-        // Set Up Search List 
-        val searchAdapter = SearchAdapter(this)
-        binding.searchRecyclerView.setHasFixedSize(true)
-        binding.searchRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-        binding.searchRecyclerView.adapter = searchAdapter
+        // init search recyclerView
+        initSearchList()
+        // observing Search list Data
+        observingSearchData()
 
         // Search View Listener
         binding.newsSearchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextChange(newText: String?): Boolean {
                 newText?.let {
-                    if (it.length > 3) {
-                        newsViewModel.getNewsData(
-                            NewsViewModel.GetNewsDataEvents.NewsByQuery(
-                                newText.trim()
-                            )
-                        )
-                    }
+                    if (it != oldQuery) // to avoid mack search on return from details fragment
+                        search(it)
+
+                    oldQuery = it
                 }
                 return true
             }
@@ -52,48 +61,88 @@ class SearchNewsFragment : Fragment(
             }
         })
 
+        // on close search view
+        binding.newsSearchView.setOnCloseListener {
+            // clear search livedata
+            newsViewModel.setNewsEvent(NewsViewModel.NewsDataEvents.ClearSearchLiveData)
+            true
+        }
+
+    }
+
+    private fun search(query: String) {
+        if (query.length >= 3) {
+            newsViewModel.setNewsEvent(
+                NewsViewModel.NewsDataEvents.NewsByQuery(
+                    query.trim()
+                )
+            )
+        }
+    }
+
+    // SetUp Search RecyclerList View
+    private fun initSearchList() {
+        // init list adapter
+        searchListAdapter = SearchAdapter(this)
+
+        binding.searchRecyclerView.setHasFixedSize(true)
+        // set linear shape to list
+        binding.searchRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        // add adapter to search recyclerList
+        binding.searchRecyclerView.adapter = searchListAdapter
+    }
+
+    // Observing Data
+    private fun observingSearchData() {
         // Observe Search Data
-        newsViewModel.newsSearchLiveData.observe(viewLifecycleOwner, { searchResult ->
+        newsViewModel.newsSearchLiveData.observe(viewLifecycleOwner) { searchResult ->
             // Hide Views
-            binding.newsProgress.visibility = View.GONE
-            binding.messageFeedBack.visibility = View.GONE
-            binding.imageNoData.visibility = View.GONE
             binding.searchRecyclerView.visibility = View.GONE
+            binding.newsSearchProgress.visibility = View.GONE
+            binding.messageFeedBackTv.visibility = View.GONE
+            binding.searchFeedbackIv.visibility = View.GONE
+
+            Log.d(TAG, "Search LiveData Observe")
 
             when (searchResult) {
                 is NewsRecourses.Loading -> {
                     // Show Loading Progress
-                    binding.newsProgress.visibility = View.VISIBLE
+                    binding.newsSearchProgress.visibility = View.VISIBLE
                 }
 
                 is NewsRecourses.Success<*> -> {
                     binding.searchRecyclerView.visibility = View.VISIBLE
                     // Submit Data To List
-                    searchAdapter.submitList((searchResult.dataList as List<NewsSearchModel>))
-                }
-
-                is NewsRecourses.Empty -> {
-                    // No Data
-                    // Show Image No Data Founds
-                    binding.imageNoData.visibility = View.VISIBLE
+                    searchListAdapter.submitList((searchResult.dataList as List<NewsModel>))
                 }
 
                 is NewsRecourses.Errors -> {
                     // Errors
                     // Show Error Message
-                    binding.messageFeedBack.apply {
-                        text = searchResult.message
+                    binding.messageFeedBackTv.apply {
+                        text = searchResult.error_message
                         visibility = View.VISIBLE
                     }
                 }
+
+                // start point value
+                is NewsRecourses.Init -> {
+                    // show search image
+                    binding.searchFeedbackIv.visibility = View.VISIBLE
+                }
             }
-        })
+
+        }
     }
 
     // On Search Item Click Listener
-    override fun onClick(position: Int, listItemData: NewsSearchModel) {
+    override fun onItemClick(position: Int, newItem: NewsModel) {
         // Go To News Details
-        // TODO: 11/20/2021
+        val action = SearchNewsFragmentDirections.actionSearchNewsFragmentToNewsDetailsFragment(
+            newsObject = newItem
+        )
+        // navigate to details fragment with news details object as a argument
+        findNavController().navigate(action)
     }
 
     override fun onDestroyView() {

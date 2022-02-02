@@ -8,22 +8,23 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.app.aktham.newsapplication.R
 import com.app.aktham.newsapplication.databinding.SearchListItemViewBinding
-import com.app.aktham.newsapplication.models.NewsSearchModel
+import com.app.aktham.newsapplication.models.NewsModel
+import com.app.aktham.newsapplication.utils.MyListsListener
 
 class SearchAdapter(
-    private val searchListListener: SearchListListener
-) : ListAdapter<NewsSearchModel, SearchAdapter.SearchViewHolder>(diffUtil) {
+    private val searchListListener: MyListsListener<NewsModel>
+) : ListAdapter<NewsModel, SearchAdapter.SearchViewHolder>(diffUtil) {
 
     companion object {
-        private val diffUtil = object : DiffUtil.ItemCallback<NewsSearchModel>() {
+        private val diffUtil = object : DiffUtil.ItemCallback<NewsModel>() {
             override fun areContentsTheSame(
-                oldItem: NewsSearchModel,
-                newItem: NewsSearchModel
-            ) = oldItem.searchTitle == newItem.searchTitle
+                oldItem: NewsModel,
+                newItem: NewsModel
+            ) = oldItem.newsTitle == newItem.newsTitle
 
             override fun areItemsTheSame(
-                oldItem: NewsSearchModel,
-                newItem: NewsSearchModel
+                oldItem: NewsModel,
+                newItem: NewsModel
             ) = oldItem == newItem
         }
     }
@@ -49,17 +50,17 @@ class SearchAdapter(
             // On List Item Click
             binding.searchCard.setOnClickListener {
                 if (absoluteAdapterPosition != RecyclerView.NO_POSITION){
-                    searchListListener.onClick(absoluteAdapterPosition,
+                    searchListListener.onItemClick(absoluteAdapterPosition,
                         getItem(absoluteAdapterPosition))
                 }
             }
         }
 
-        fun bind(data: NewsSearchModel) {
-            binding.searchTitle.text = data.searchTitle
-            binding.searchPublishBy.text = data.searchPublishBy
+        fun bind(data: NewsModel) {
+            binding.searchTitle.text = data.newsTitle
+            binding.searchPublishBy.text = data.newsPublishBy
             binding.searchImage.load(
-                data.searchImage
+                data.newsImageUrl
             ) {
                 crossfade(750)
                 placeholder(R.drawable.ic_baseline_image_search_24)
@@ -68,8 +69,4 @@ class SearchAdapter(
         }
     }
 
-    // Search List Item Listener Interface
-    interface SearchListListener {
-        fun onClick(position: Int, listItemData: NewsSearchModel)
-    }
 }

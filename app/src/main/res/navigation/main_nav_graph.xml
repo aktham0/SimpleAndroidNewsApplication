@@ -12,7 +12,11 @@
         tools:layout="@layout/fragment_main_list_news">
         <action
             android:id="@+id/action_mainListNewsFragment_to_newsDetailsFragment"
-            app:destination="@id/newsDetailsFragment" />
+            app:destination="@id/newsDetailsFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/newsDetailsFragment"
@@ -20,8 +24,8 @@
         android:label="Details"
         tools:layout="@layout/fragment_news_details">
         <argument
-            android:name="itemPosition"
-            app:argType="integer" />
+            android:name="newsObject"
+            app:argType="com.app.aktham.newsapplication.models.NewsModel" />
     </fragment>
     <fragment
         android:id="@+id/searchNewsFragment"
@@ -29,19 +33,29 @@
         android:label="News Search"
         tools:layout="@layout/fragment_search_news">
         <action
-            android:id="@+id/action_searchNewsFragment_to_mainListNewsFragment"
-            app:destination="@id/mainListNewsFragment" />
-        <action
             android:id="@+id/action_searchNewsFragment_to_newsDetailsFragment"
-            app:destination="@id/newsDetailsFragment" />
+            app:destination="@id/newsDetailsFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.app.aktham.newsapplication.ui.SettingsFragment"
         android:label="Settings"
-        tools:layout="@layout/fragment_settings">
+        tools:layout="@layout/fragment_settings"/>
+    <fragment
+        android:id="@+id/archiveNewsFragment"
+        android:name="com.app.aktham.newsapplication.ui.ArchiveNewsFragment"
+        android:label="Archive News"
+        tools:layout="@layout/fragment_archive_news" >
         <action
-            android:id="@+id/action_settingsFragment_to_mainListNewsFragment"
-            app:destination="@id/mainListNewsFragment" />
+            android:id="@+id/action_archiveNewsFragment_to_newsDetailsFragment"
+            app:destination="@id/newsDetailsFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
 </navigation>

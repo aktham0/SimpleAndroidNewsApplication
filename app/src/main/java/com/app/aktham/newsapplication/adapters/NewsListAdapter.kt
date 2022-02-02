@@ -6,23 +6,23 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import coil.size.Scale
 import com.app.aktham.newsapplication.R
 import com.app.aktham.newsapplication.databinding.NewsListItemViewBinding
-import com.app.aktham.newsapplication.models.NewsListModel
+import com.app.aktham.newsapplication.models.NewsModel
+import com.app.aktham.newsapplication.utils.MyListsListener
 
 class NewsListAdapter(
-    private val newsListListener: NewsListListener
-) : ListAdapter<NewsListModel, NewsListAdapter.NewsListViewHolder>(DiffUtil) {
+    private val newsListListener: MyListsListener<NewsModel>
+) : ListAdapter<NewsModel, NewsListAdapter.NewsListViewHolder>(DiffUtil) {
 
     companion object {
-        private val DiffUtil = object : DiffUtil.ItemCallback<NewsListModel>() {
+        private val DiffUtil = object : DiffUtil.ItemCallback<NewsModel>() {
             override fun areContentsTheSame(
-                oldItem: NewsListModel,
-                newItem: NewsListModel
+                oldItem: NewsModel,
+                newItem: NewsModel
             ) = oldItem.newsTitle == newItem.newsTitle
 
-            override fun areItemsTheSame(oldItem: NewsListModel, newItem: NewsListModel) =
+            override fun areItemsTheSame(oldItem: NewsModel, newItem: NewsModel) =
                 oldItem == newItem
         }
     }
@@ -46,15 +46,27 @@ class NewsListAdapter(
             // OnList Item Click Action
             binding.root.setOnClickListener {
                 if (absoluteAdapterPosition != RecyclerView.NO_POSITION) {
-                    newsListListener.onClick(
+                    newsListListener.onItemClick(
                         absoluteAdapterPosition,
                         getItem(absoluteAdapterPosition)
                     )
                 }
             }
+
+            // OnList Item Long Press Action
+            binding.root.setOnLongClickListener {
+                if (absoluteAdapterPosition != RecyclerView.NO_POSITION) {
+                    newsListListener.onItemLongPress(
+                        absoluteAdapterPosition,
+                        it,
+                        getItem(absoluteAdapterPosition)
+                    )
+                    true
+                } else false
+            }
         }
 
-        fun bind(newsData: NewsListModel) {
+        fun bind(newsData: NewsModel) {
             binding.newsTitle.text = newsData.newsTitle
             binding.newsPublishByTv.text = newsData.newsPublishBy
             binding.newsPublishDateTv.text = newsData.newsPublishDate
@@ -62,15 +74,9 @@ class NewsListAdapter(
             // Load Image Using Coil Library
             binding.newsImage.load(newsData.newsImageUrl) {
                 crossfade(750)
-                scale(Scale.FILL)
-                placeholder(R.drawable.ic_baseline_image_search_24)
                 error(R.drawable.ic_baseline_error_outline_24)
             }
         }
-    }
 
-    interface NewsListListener {
-        fun onClick(position: Int, newsData: NewsListModel)
     }
-
 }

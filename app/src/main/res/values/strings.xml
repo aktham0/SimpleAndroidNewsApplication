@@ -1,14 +1,12 @@
 <resources>
     <string name="app_name">NewsApplication</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string name="news_body_text">News Text Here News Text Here News Text Here News Text
         Here News Text Here News Text Here News Text Here News Text Here News Text Here
         NewsText Here News Text Here NewsText Here News Text Here News Text Here News Text
         Here News Text Here News Text Here News Text Here News Text Here News Text Here News
         Text Here News Text Here </string>
-    <string name="menu_news_feeds">News Feeds</string>
+    <string name="menu_news_feeds">Feeds</string>
     <string name="menu_search">Search</string>
     <string name="menu_settings">Settings</string>
     <string name="dark">Dark</string>
@@ -27,4 +25,25 @@
     <string name="back">Back</string>
     <string name="finish">Finish</string>
     <string name="style_auto">Auto</string>
+    <string name="next_but_title">Next</string>
+    <string name="content_lang_dialog_title">News Content Language</string>
+    <string name="save_lang_dialog_but">Save</string>
+    <string name="cancel_lang_dialog_but">Cancel</string>
+    <string name="select_style_dialog_button">Select</string>
+    <string name="cancel_style_dialog_but">Cancel</string>
+
+    <string-array name="NewsContentLanguage">
+        <item>Arabic</item>
+        <item>English</item>
+    </string-array>
+
+    <string-array name="AppStyles">
+        <item>Light</item>
+        <item>Dark</item>
+        <item>Auto (Follow System)</item>
+    </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="menu_archive">Archive</string>
+
 </resources>

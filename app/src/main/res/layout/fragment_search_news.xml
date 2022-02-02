@@ -10,7 +10,8 @@
         android:id="@+id/search_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="@dimen/search_card_margin"
+        app:cardCornerRadius="@dimen/search_card_radius"
         app:cardElevation="@dimen/card_elevation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -28,46 +29,50 @@
         android:id="@+id/search_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        tools:listitem="@layout/search_list_item_view"
+        android:layout_marginTop="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/search_card" />
 
-    <TextView
-        android:id="@+id/message_feed_back"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text=""
-        android:textSize="15sp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/search_card" />
-
-    <ProgressBar
-        android:id="@+id/news_progress"
-        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-        android:layout_width="200dp"
-        android:layout_height="30dp"
-        android:indeterminate="true"
-        android:indeterminateBehavior="repeat"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/search_card" />
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/image_no_data"
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/feedback_layout"
         android:layout_width="0dp"
-        android:layout_height="120dp"
-        android:visibility="gone"
-        app:srcCompat="@drawable/no_data_image"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_height="@dimen/feed_back_layout_height"
+        android:gravity="center"
+        android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/search_card" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/search_card"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/search_feedback_iv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:srcCompat="@drawable/undraw_search"
+            android:layout_gravity="center"/>
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/news_search_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:trackThickness="20dp"
+            style="@style/Widget.MaterialComponents.CircularProgressIndicator"
+            android:indeterminate="true"/>
+
+        <TextView
+            android:id="@+id/message_feed_back_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="@dimen/message_fb_tv_size"
+            android:visibility="gone"
+            android:padding="@dimen/message_fb_tv_padding"
+            tools:text="Feedback Message"/>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,9 +1,9 @@
 package com.app.aktham.newsapplication.di
 
 import android.content.Context
-import android.content.SharedPreferences
+import androidx.room.Room
+import com.app.aktham.newsapplication.room.NewsDataBase
 import com.app.aktham.newsapplication.utils.Constants
-import com.app.aktham.newsapplication.utils.DataMapping_Imp
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -13,18 +13,17 @@ import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
 @Module
-object MainModule {
+object RoomModule {
 
     @Singleton
     @Provides
-    fun providesSharedPreference(@ApplicationContext context: Context): SharedPreferences =
-        context.getSharedPreferences(
-            Constants.SHARED_PREFERENCE_FILE_NAME,
-            Context.MODE_PRIVATE
-        )
+    fun provideDataBase(@ApplicationContext context: Context) = Room.databaseBuilder(
+        context,
+        NewsDataBase::class.java,
+        Constants.DB_NAME
+    ).build()
 
     @Singleton
     @Provides
-    fun providersDataMapping() : DataMapping_Imp = DataMapping_Imp()
+    fun provideDataBaseDao(dataBase: NewsDataBase) = dataBase.getNewsDao()
 }
-

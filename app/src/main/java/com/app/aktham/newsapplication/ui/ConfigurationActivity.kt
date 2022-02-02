@@ -23,6 +23,16 @@ class ConfigurationActivity : AppCompatActivity() {
         // Chick Application Style (Dark Or Light)
         configViewModel.changAppStyle()
         setContentView(R.layout.activity_configuration)
+
+//        // chick if configuration is already shown
+//        val firstAppStart = getSharedPreferences(Constants.SHARED_PREFERENCE_FILE_NAME, Context.MODE_PRIVATE)
+//            .getBoolean(Constants.PREFERENCE_FIRST_START_KET, false)
+//        if (firstAppStart){
+//            // close Configuration Activity and go to mainActivity
+//            startActivity(Intent(this, MainActivity::class.java))
+//            this.finish()
+//        }
+
         // Change Background & StatusBar Color
         window?.let {
             it.statusBarColor = getColor(android.R.color.transparent)

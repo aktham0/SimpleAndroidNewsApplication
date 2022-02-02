@@ -19,8 +19,8 @@ class ConfigRepository @Inject constructor(
     fun loadContentLanguageState() =
         sharedPreferences.getString(
             Constants.PREFERENCE_LANG_KEY,
-            ""
-        ) ?: ""
+            Constants.EN_LANGUAGE
+        ) ?: Constants.EN_LANGUAGE
 
     fun saveCountry(country: String) {
         sharedPreferences.edit {
@@ -47,6 +47,7 @@ class ConfigRepository @Inject constructor(
         if (defaultStyle != style) {
             AppCompatDelegate.setDefaultNightMode(style)
         }
+        // save style state in sharedPreferences
         saveAppStyle(style)
     }
 
