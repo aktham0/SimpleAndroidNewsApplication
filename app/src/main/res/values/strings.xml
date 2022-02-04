@@ -45,5 +45,8 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="menu_archive">Archive</string>
+    <string name="not_found_any_news_saved">Not Found Any News Saved</string>
+    <string name="notes_long_press_to_any_news_card_to_save">Notes: Long Press To any News Card To Save</string>
+    <string name="news_page">News Page</string>
 
 </resources>

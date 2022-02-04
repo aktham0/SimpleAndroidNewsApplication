@@ -20,6 +20,7 @@ data class NewsEntity(
 
 fun NewsEntity.toNewsModel() :NewsModel {
     return NewsModel(
+        id = id,
         newsTitle = title,
         newsContent = content,
         newsDescription = body,

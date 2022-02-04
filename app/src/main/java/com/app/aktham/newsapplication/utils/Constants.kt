@@ -14,7 +14,7 @@ object Constants {
     const val BASE_URL = "https://newsapi.org/"
     // Api Key
     // TODO: 11/20/2021 Add Your Api Key
-    const val API_KEY = "" // Api Key from https://newsapi.org/
+    const val API_KEY = "7b30511ca5044213b235c243209e2b6f" // Api Key from https://newsapi.org/
 
     const val EN_LANGUAGE = "en"
     const val AR_LANGUAGE = "ar"

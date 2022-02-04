@@ -51,6 +51,18 @@ class NewsArchiveListAdapter(
                     )
                 }
             }
+
+            // OnList Item Long Press Action
+            binding.root.setOnLongClickListener {
+                if (absoluteAdapterPosition != RecyclerView.NO_POSITION) {
+                    newsListListener.onItemLongPress(
+                        absoluteAdapterPosition,
+                        it,
+                        getItem(absoluteAdapterPosition)
+                    )
+                    true
+                } else false
+            }
         }
 
         fun bind(newsData: NewsModel) {

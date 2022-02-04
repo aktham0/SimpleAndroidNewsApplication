@@ -6,6 +6,7 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class NewsModel(
+    val id: Int = 0,
     val newsTitle: String,
     val newsPublishBy: String,
     val newsImageUrl: String,
@@ -19,6 +20,7 @@ data class NewsModel(
 
 fun NewsModel.toNewsEntity() :NewsEntity {
     return NewsEntity(
+        id = id,
         title = newsTitle,
         publishDate = newsPublishDate,
         link = newsLink,

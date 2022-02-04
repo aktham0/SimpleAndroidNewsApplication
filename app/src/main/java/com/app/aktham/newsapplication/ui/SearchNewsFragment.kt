@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
+import android.widget.PopupMenu
+import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -143,6 +145,28 @@ class SearchNewsFragment : Fragment(
         )
         // navigate to details fragment with news details object as a argument
         findNavController().navigate(action)
+    }
+
+    // On Search Item Loong Press
+    override fun onItemLongPress(position: Int, itemView: View, itemObjet: NewsModel) {
+        PopupMenu(requireContext(), itemView).apply {
+            // inflate menu xml
+            menuInflater.inflate(R.menu.list_item_popup_menu, menu)
+            // on menu click item listener
+            setOnMenuItemClickListener {
+                // save in db
+                newsViewModel.setNewsEvent(NewsViewModel.NewsDataEvents.InsertNewsArticle(itemObjet))
+                Toast.makeText(
+                    requireContext(),
+                    "Saved",
+                    Toast.LENGTH_SHORT
+                ).show()
+                true
+            }
+
+            // show menu
+            show()
+        }
     }
 
     override fun onDestroyView() {

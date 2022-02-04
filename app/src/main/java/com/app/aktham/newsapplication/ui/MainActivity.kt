@@ -1,11 +1,13 @@
 package com.app.aktham.newsapplication.ui
 
 import android.annotation.SuppressLint
+import android.app.Activity
+import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import androidx.core.content.ContextCompat
 import androidx.core.view.forEach
 import androidx.navigation.*
 import androidx.navigation.fragment.NavHostFragment
@@ -24,6 +26,18 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController
 
+    companion object {
+
+        fun intent(context: Activity) {
+            context.startActivity(Intent(
+                context, MainActivity::class.java
+            ))
+
+            context.finish()
+        }
+
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityMainBinding.inflate(layoutInflater)
@@ -33,14 +47,6 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.main_nav_host) as NavHostFragment
         navController = navHostFragment.navController
-
-//        // Set Color For StatusBar And Activity Window
-//        window?.let {
-//            it.statusBarColor = ContextCompat.getColor(this,
-//                android.R.color.transparent)
-//            it.setBackgroundDrawableResource(R.drawable.main_activity_gradient_background)
-//        }
-
     }
 
     override fun onStart() {

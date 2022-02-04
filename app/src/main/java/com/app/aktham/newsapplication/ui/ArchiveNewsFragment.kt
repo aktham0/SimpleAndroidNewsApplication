@@ -1,10 +1,14 @@
 package com.app.aktham.newsapplication.ui
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.app.aktham.newsapplication.R
 import com.app.aktham.newsapplication.adapters.NewsArchiveListAdapter
@@ -39,8 +43,17 @@ class ArchiveNewsFragment : Fragment(R.layout.fragment_archive_news),
 
         // observe news archive liveData
         newsViewModel.newsArchiveArticlesLiveData.observe(viewLifecycleOwner) { newsArchiveList ->
-            // set data to lise adapter
-            adapter.submitList(newsArchiveList)
+            binding.newsArchiveRecyclerView.visibility = View.GONE
+            binding.notFoundDataLayout.visibility = View.GONE
+            if (newsArchiveList.isEmpty()) {
+                // show not found data layout
+                binding.notFoundDataLayout.visibility = View.VISIBLE
+            } else {
+                // show recycler list view
+                binding.newsArchiveRecyclerView.visibility = View.VISIBLE
+                // set data to lise adapter
+                adapter.submitList(newsArchiveList)
+            }
         }
     }
 
@@ -51,6 +64,21 @@ class ArchiveNewsFragment : Fragment(R.layout.fragment_archive_news),
         binding.newsArchiveRecyclerView.layoutManager =
             StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         binding.newsArchiveRecyclerView.adapter = adapter
+
+        // add swipe functionality to list
+        ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT){
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ) = false
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                // remove from news article from DataBase
+                Toast.makeText(requireContext(), "Swipe", Toast.LENGTH_LONG).show()
+            }
+
+        }).attachToRecyclerView(binding.newsArchiveRecyclerView)
     }
 
 

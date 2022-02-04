@@ -14,13 +14,6 @@
         android:theme="@style/SplashScreenStyle">
         <activity
             android:name=".ui.ConfigurationActivity"
-            android:exported="false">
-        </activity>
-
-        <activity
-            android:name=".ui.MainActivity"
-            android:theme="@style/Theme.NewsApplication"
-            android:windowSoftInputMode="adjustNothing"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,6 +21,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".ui.MainActivity"
+            android:theme="@style/Theme.NewsApplication"
+            android:windowSoftInputMode="adjustNothing"
+            android:exported="false"/>
 
     </application>
 

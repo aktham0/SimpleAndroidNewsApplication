@@ -1,5 +1,7 @@
 package com.app.aktham.newsapplication.ui
 
+import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -7,6 +9,7 @@ import androidx.navigation.findNavController
 import com.app.aktham.newsapplication.R
 import com.app.aktham.newsapplication.databinding.ActivityConfigurationBinding
 import com.app.aktham.newsapplication.ui.viewModels.ConfigViewModel
+import com.app.aktham.newsapplication.utils.Constants
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -19,19 +22,21 @@ class ConfigurationActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setTheme(R.style.Theme_NewsApplication)
         // Chick Application Style (Dark Or Light)
         configViewModel.changAppStyle()
-        setContentView(R.layout.activity_configuration)
+        // chick if configuration is already shown
+        val firstAppStart = getSharedPreferences(Constants.SHARED_PREFERENCE_FILE_NAME, Context.MODE_PRIVATE)
+            .getBoolean(Constants.PREFERENCE_FIRST_START_KET, false)
+        if (firstAppStart){
+            // close Configuration Activity and go to mainActivity
+            startActivity(Intent(this, MainActivity::class.java))
+            this.finish()
+        }
 
-//        // chick if configuration is already shown
-//        val firstAppStart = getSharedPreferences(Constants.SHARED_PREFERENCE_FILE_NAME, Context.MODE_PRIVATE)
-//            .getBoolean(Constants.PREFERENCE_FIRST_START_KET, false)
-//        if (firstAppStart){
-//            // close Configuration Activity and go to mainActivity
-//            startActivity(Intent(this, MainActivity::class.java))
-//            this.finish()
-//        }
+        setTheme(R.style.Theme_NewsApplication)
+
+        _binding = ActivityConfigurationBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         // Change Background & StatusBar Color
         window?.let {

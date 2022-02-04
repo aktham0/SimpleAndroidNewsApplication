@@ -9,9 +9,7 @@
         </shape>
     </item>
 
-    <item android:drawable="@drawable/ic_baseline_settings"
-        android:width="200dp"
-        android:height="200dp"
+    <item android:drawable="@drawable/splash_screen_icon"
         android:gravity="center"/>
 
 </layer-list>

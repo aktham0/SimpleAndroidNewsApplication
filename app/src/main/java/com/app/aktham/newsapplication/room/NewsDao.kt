@@ -1,17 +1,14 @@
 package com.app.aktham.newsapplication.room
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 import kotlinx.coroutines.flow.Flow
 import retrofit2.http.DELETE
 
 @Dao
 interface NewsDao {
 
-    @Insert
-    suspend fun insertNewsArticle(newsArticle: NewsEntity)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertNewsArticle(newsArticle: NewsEntity) :Long
 
     @Query("DELETE FROM NewsTable")
     suspend fun deleteAll()

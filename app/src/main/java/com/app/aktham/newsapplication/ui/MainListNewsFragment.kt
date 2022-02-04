@@ -128,6 +128,8 @@ class MainListNewsFragment : Fragment(R.layout.fragment_main_list_news),
                         visibility = View.VISIBLE
                     }
                 }
+
+                else -> {}
             }
         }
     }
@@ -149,10 +151,10 @@ class MainListNewsFragment : Fragment(R.layout.fragment_main_list_news),
             // on menu click item listener
             setOnMenuItemClickListener {
                 // save in db
-                newsViewModel.setNewsEvent(NewsViewModel.NewsDataEvents.InsertNewsArticle(itemObjet))
+                val s = newsViewModel.insertNewsArticle(itemObjet)
                 Toast.makeText(
                     requireContext(),
-                    "Saved",
+                    "Saved $s",
                     Toast.LENGTH_SHORT
                 ).show()
                 true

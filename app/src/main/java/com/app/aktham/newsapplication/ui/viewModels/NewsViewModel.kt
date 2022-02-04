@@ -13,6 +13,7 @@ import com.app.aktham.newsapplication.utils.Constants.PAGE_SIZE_MAX
 import com.app.aktham.newsapplication.utils.NewsRecourses
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -77,6 +78,10 @@ class NewsViewModel @Inject constructor(
                         // send error state
                         _newsLiveData.postValue(NewsRecourses.Errors("Failure To Get News Data"))
                     }
+                } catch (ex: IllegalArgumentException) {
+                    ex.printStackTrace()
+                    // send error state
+                    _newsLiveData.postValue(NewsRecourses.Errors("Set Up Your API KEY"))
                 } catch (ex: Exception) {
                     ex.printStackTrace()
                     // send error state
@@ -114,6 +119,10 @@ class NewsViewModel @Inject constructor(
                         // send error state
                         _newsSearchLiveData.postValue(NewsRecourses.Errors("Failure To Get Search News Data"))
                     }
+                } catch (ex: IllegalArgumentException) {
+                    ex.printStackTrace()
+                    // send error state
+                    _newsLiveData.postValue(NewsRecourses.Errors("Set Up Your API KEY"))
                 } catch (ex: Exception) {
                     ex.printStackTrace()
                     // send error state
@@ -125,7 +134,7 @@ class NewsViewModel @Inject constructor(
 
 
     // Get Data Events
-    fun setNewsEvent(dataEvent: NewsDataEvents) {
+    fun setNewsEvent(dataEvent: NewsDataEvents){
         when (dataEvent) {
             is NewsDataEvents.NewsByCategory -> {
                 // Get News By Category
@@ -162,12 +171,16 @@ class NewsViewModel @Inject constructor(
 
 
     // insert news article to room db
-    private fun insertNewsArticle(news: NewsModel) {
+     fun insertNewsArticle(news: NewsModel) :Long {
+        var state :Long = 0
         viewModelScope.launch {
-            withContext(Dispatchers.IO) {
-                newsRepository.insertNewsArticle(newsEntity = news.toNewsEntity())
-            }
+            state = withContext(Dispatchers.IO) {
+                async {
+                    newsRepository.insertNewsArticle(newsEntity = news.toNewsEntity())
+                }
+            }.await()
         }
+        return state
     }
 
     // get News Articles Archives
@@ -187,7 +200,9 @@ class NewsViewModel @Inject constructor(
     // delete News Article from db By Id
     private fun deleteNewsArticleFromDB(news: NewsModel) {
         viewModelScope.launch {
-            newsRepository.deleteNewsArticle(news.toNewsEntity())
+            newsRepository.deleteNewsArticle(
+                newsEntity = news.toNewsEntity()
+            )
         }
     }
 

@@ -54,6 +54,19 @@ class SearchAdapter(
                         getItem(absoluteAdapterPosition))
                 }
             }
+            // On List Item Loong Press
+            binding.searchCard.setOnLongClickListener {
+                if (absoluteAdapterPosition != RecyclerView.NO_POSITION) {
+                    searchListListener.onItemLongPress(
+                        absoluteAdapterPosition,
+                        it,
+                        getItem(absoluteAdapterPosition)
+                    )
+                    true
+                } else {
+                    false
+                }
+            }
         }
 
         fun bind(data: NewsModel) {

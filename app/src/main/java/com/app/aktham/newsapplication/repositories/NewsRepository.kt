@@ -32,7 +32,7 @@ class NewsRepository @Inject constructor(
     suspend fun insertNewsArticle(newsEntity: NewsEntity) =
         newsDao.insertNewsArticle(newsEntity)
 
-    suspend fun getArchiveNewsArticles() = newsDao.getNewsData()
+    fun getArchiveNewsArticles() = newsDao.getNewsData()
 
     suspend fun deleteAllNewsArticles() = newsDao.deleteAll()
 
